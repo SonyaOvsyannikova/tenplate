@@ -28,10 +28,12 @@ template <typename T>
 void pop_front(T*& arr, int& n);
 
 
-void FillRand(int arr[], int n);
+void FillRand(double arr[], const int n);
 template <typename T>
 void FillRand(T** arr, const int m, const int n);
-void print(int arr[], int n);
+void FillRand(double** arr, const int m, const int n);
+template <typename T>
+void print(T arr[], int n);
 template <typename T>
 void print(T** arr, const int m, const int n);
 //#define DYNAMIC_MEMORY_1
@@ -91,13 +93,13 @@ int main()
 
 	// создаем массив указателей
 
-	int** arr = new int* [m];
+	 double** arr = new double* [m];
 
 	// выделяем память под строки двумерного массива
 
 	for (int i = 0; i < m; i++)
 	{
-		arr[i] = new int[n] {};
+		arr[i] = new double[n] {};
 	}
 
 	/* cout << "Память выделена " << endl;
@@ -150,6 +152,8 @@ for (int j = q; q < n; j++)
 	buffer[j] = arr[j + 1];
 }
 */
+
+
 template <typename T>
 void FillRand(T* arr, int n)
 {
@@ -171,9 +175,18 @@ void FillRand(T** arr, const int m, const int n)
 		{
 			arr[i][j] = 1 + rand() % 100;
 		}
-
 	}
-
+}
+void FillRand(double** arr, const int m, const int n)
+{
+	// использование двумерного динамического массива
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			arr[i][j] = 1 + double(rand() % 10000) / 100;
+		}
+	}
 }
 template <typename T>
 void print(T* arr, int n)
@@ -232,7 +245,7 @@ void push_row_back(T**& arr, int& m, const int n)
 template <typename T>
 void push_row_front(T**& arr, int& m, const int n)
 {
-	int** buffer = new T* [m + 1]{};
+	T** buffer = new T* [m + 1]{};
 	for (int i = 0; i < m; i++)
 	{
 		buffer[i + 1] = arr[i];
@@ -308,4 +321,22 @@ void pop_front(T*& arr, int& n)
 	delete[] arr;
 	arr = buffer;
 }
+template <typename T> 
+void FiilRand(T arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		arr[i] = rand() % 100;
+	}
+}
 
+void FiilRand(double** arr, const int m, const int n)
+{
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; i++)
+		{
+			arr[i][j] = double(rand() % 100000)/100;
+		}
+	}
+}
